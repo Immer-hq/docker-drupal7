@@ -7,10 +7,10 @@ set -e
 if [ -n "$XDEBUG_REMOTE_IP" ]; then
   phpenmod xdebug
   echo "Setting up XDebug on $XDEBUG_REMOTE_IP"
-  echo "xdebug.remote_enable=1" >> /etc/php/7.1/apache2/conf.d/20-xdebug.ini
-  echo "xdebug.remote_host=\"$XDEBUG_REMOTE_IP\"" >> /etc/php/7.1/apache2/conf.d/20-xdebug.ini
-  echo "xdebug.remote_port=9000" >> /etc/php/7.1/apache2/conf.d/20-xdebug.ini
-  echo "xdebug.idekey=phpstorm_xdebug" >> /etc/php/7.1/apache2/conf.d/20-xdebug.ini
+  echo "xdebug.remote_enable=1" >> /etc/php/7.0/apache2/conf.d/20-xdebug.ini
+  echo "xdebug.remote_host=\"$XDEBUG_REMOTE_IP\"" >> /etc/php/7.0/apache2/conf.d/20-xdebug.ini
+  echo "xdebug.remote_port=9000" >> /etc/php/7.0/apache2/conf.d/20-xdebug.ini
+  echo "xdebug.idekey=phpstorm_xdebug" >> /etc/php/7.0/apache2/conf.d/20-xdebug.ini
 fi
 
 # Setup mail.
