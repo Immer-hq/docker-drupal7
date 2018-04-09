@@ -2,8 +2,8 @@
 
 cd /var/www/web
 drush -y updb
-drush -y cr
+drush cc all
 drush -y fra
-drush -y cr
+drush cc all
 drush -y fra
 drush cc all
