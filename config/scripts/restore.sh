@@ -1,4 +1,6 @@
 #!/bin/bash
 
-cd /var/www/web/sites/default
-tar -xzf /backup/files.tar.gz
+if [ -z "$SKIP_BACKUP" ]; then
+  cd /var/www/web/sites/default
+  tar -xzf /backup/files.tar.gz
+fi
