@@ -1,8 +1,16 @@
 #!/bin/bash
 
 if [ -z "$SKIP_BACKUP" ]; then
-  if [ -r /backup/files.tar.gz ]; then
-    cd /var/www/web/sites/default
-    tar -xzf /backup/files.tar.gz
-  fi
+  for x in `ls /var/www/web/sites`; do
+    if [ -d "/var/www/web/sites/$x" ]; then
+      cd /var/www/web/sites/$x
+      if [ -f "/backup/$x.tar.gz" ]; then
+        tar -czf /backup/$x.tar.gz files
+      else
+        if [ -f "/backup/files.tar.gz" ]; then
+          tar -czf /backup/files.tar.gz files
+        fi
+      fi
+    fi
+  done
 fi
