@@ -68,16 +68,16 @@ function drush_make_update_exclude($makefile = NULL) {
         continue;
       }
       $projects[$project_name] = $project + array(
-          'path'    => '',
-          'label'   => $project_name,
-          'version' => $version,
-        );
+        'path'    => '',
+        'label'   => $project_name,
+        'version' => $version,
+      );
     }
     elseif ($project['download']['type'] == 'pm') {
       $projects[$project_name] = $project + array(
-          'path'  => '',
-          'label' => $project_name,
-        );
+        'path'  => '',
+        'label' => $project_name,
+      );
     }
   }
 
@@ -95,7 +95,13 @@ function drush_make_update_exclude($makefile = NULL) {
 
   $security_only = drush_get_option('security-only', FALSE);
   foreach ($update_info as $project_name => $project_update_info) {
-    if (!$security_only || ($security_only && $project_update_info['status'] == DRUSH_UPDATESTATUS_NOT_SECURE)) {
+    $current_version = $project_update_info['existing_version'];
+    $release_date = intval($project_update_info['releases']['7.x-' . $current_version]['date']);
+    $has_security_update = FALSE;
+    if ($project_update_info['security updates'] && intval($project_update_info['security updates'][0]['date']) > $release_date) {
+      $has_security_update = TRUE;
+    }
+    if (!$security_only || ($security_only && $has_security_update)) {
       $make_projects[$project_name]['download']['full_version'] = $project_update_info['recommended'];
     }
   }
