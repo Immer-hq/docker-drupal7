@@ -37,7 +37,9 @@ RUN echo Europe/Paris | tee /etc/timezone \
  && composer global require drush/drush:8.* \
  && ln -s /root/.composer/vendor/bin/drush /usr/bin/drush \
  && phpdismod xdebug \
- && drush dl drush_language-7.x
+ && drush dl drush_language-7.x \
+ && mkdir -p /var/www/private \
+ && chmod -Rf 777 /var/www/private
 
 COPY config/php.ini /etc/php/7.0/apache2/php.ini
 COPY config/apache2.conf /etc/apache2/apache2.conf
