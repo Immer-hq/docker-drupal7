@@ -16,10 +16,10 @@ RUN echo Europe/Paris | tee /etc/timezone \
  && add-apt-repository -y ppa:ondrej/php \
  && apt-get update \
  && curl -sL https://deb.nodesource.com/setup_9.x | bash - \
- && apt-get install -y --no-install-recommends --allow-unauthenticated apache2 php7.0 libapache2-mod-php7.0 php-memcached \
-      php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-mysql php7.0-opcache php7.0-json \
-      php7.0-gd php7.0-curl php7.0-ldap php7.0-mysql php7.0-odbc php7.0-soap php7.0-xsl \
-      php7.0-zip php7.0-intl php7.0-cli php7.0-xdebug \
+ && apt-get install -y --no-install-recommends --allow-unauthenticated apache2 php7.1 libapache2-mod-php7.1 php-memcached \
+      php7.1-mcrypt php7.1-mbstring php7.1-xml php7.1-mysql php7.1-opcache php7.1-json \
+      php7.1-gd php7.1-curl php7.1-ldap php7.1-mysql php7.1-odbc php7.1-soap php7.1-xsl \
+      php7.1-zip php7.1-intl php7.1-cli php7.1-xdebug \
       nodejs rsync \
       build-essential \
       unzip git-core ssh curl mysql-client nano vim less \
@@ -41,7 +41,7 @@ RUN echo Europe/Paris | tee /etc/timezone \
  && mkdir -p /var/www/private \
  && chmod -Rf 777 /var/www/private
 
-COPY config/php.ini /etc/php/7.0/apache2/php.ini
+COPY config/php.ini /etc/php/7.1/apache2/php.ini
 COPY config/apache2.conf /etc/apache2/apache2.conf
 COPY config/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf
 COPY config/scripts /var/scripts
